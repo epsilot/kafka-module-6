@@ -1,0 +1,18 @@
+services:
+  producer:
+    build:
+      context: ./py-test
+    entrypoint: ["python", "producer.py"]
+    environment:
+      - BOOTSTRAP_SERVER=${BOOTSTRAP_SERVER}
+      - PWD=${USER_PWD}
+      - SCHEMA_REGISTRY=${SCHEMA_REGISTRY}
+
+  consumer:
+    build:
+      context: ./py-test
+    entrypoint: ["python", "consumer.py"]
+    environment:
+      - BOOTSTRAP_SERVER=${BOOTSTRAP_SERVER}
+      - PWD=${USER_PWD}
+      - SCHEMA_REGISTRY=${SCHEMA_REGISTRY}
