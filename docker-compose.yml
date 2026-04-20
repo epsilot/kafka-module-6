@@ -16,3 +16,15 @@ services:
       - BOOTSTRAP_SERVER=${BOOTSTRAP_SERVER}
       - PWD=${USER_PWD}
       - SCHEMA_REGISTRY=${SCHEMA_REGISTRY}
+
+  nifi:
+    image: apache/nifi:1.21.0
+    container_name: nifi
+    user: "root"
+    ports:
+      - "8080:8080"
+    environment:
+      NIFI_WEB_HTTP_PORT: 8080
+    volumes:
+      - ./nifi_data:/opt/nifi/nifi-current/data
+      - ./kafka-truststore.jks:/opt/nifi/kafka-truststore.jks
